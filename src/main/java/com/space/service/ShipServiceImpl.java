@@ -1,5 +1,6 @@
 package com.space.service;
 
+import com.space.exception.BadRequestException;
 import com.space.model.Ship;
 import com.space.repository.ShipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,13 @@ public class ShipServiceImpl implements ShipService {
 
     @Override
     public Ship createShip(Ship ship) {
+        if (ship.getName() == null ||
+                ship.getPlanet() == null ||
+                ship.getShipType() == null ||
+                ship.getProdDate() == null ||
+                ship.getSpeed() == null ||
+                ship.getCrewSize() == null
+        ) throw new BadRequestException("Один из парамметров не определен")
         return shipRepository.saveAndFlush(ship);
     }
 
