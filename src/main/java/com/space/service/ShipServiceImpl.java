@@ -67,6 +67,9 @@ public class ShipServiceImpl implements ShipService {
 
         shipParams(ship);
 
+        if (!shipRepository.existsById(id))
+            throw new ShipNotFoundException("Корабль не найден!");
+
         Ship editedShip = shipRepository.findById(id).get();
 
         if (ship.getName() != null)

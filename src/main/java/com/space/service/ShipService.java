@@ -17,6 +17,8 @@ public interface ShipService {
     void deleteById(Long id);
     Long checkAndParseId(String id);
 
+    //boolean existsById(long id); /// добавил новый
+
     Specification<Ship> filterByPlanet(String planet);
 
     Specification<Ship> filterByName(String name);
